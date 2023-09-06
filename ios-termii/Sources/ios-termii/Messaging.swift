@@ -27,10 +27,13 @@ public class Messaging {
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
+        request.httpBody = body!.data(using: String.Encoding.utf8)
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")  // the request is JSON
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
         
         let (data, response) = try await URLSession.shared.data(for: request)
             
-            guard let response = response as? HTTPURLResponse, [200,400].contains(response.statusCode) else {
+            guard let response = response as? HTTPURLResponse, [200].contains(response.statusCode) else {
                 return nil
             }
             
