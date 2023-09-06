@@ -22,7 +22,7 @@ public class ios_termii {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = body!.data(using: String.Encoding.utf8)
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")  // the request is JSON
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
         
         let (data, response) = try await URLSession.shared.data(for: request)
